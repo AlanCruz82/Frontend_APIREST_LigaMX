@@ -20,25 +20,25 @@ function App() {
 
         <Route path='/' element={<LoginPage/>}/>
 
-        <Route path='equipos' element={
+        <Route path='/equipos' element={
           <PrivateRoute>
             <EquiposPage/>
           </PrivateRoute>
         }/>
 
-        <Route path='jugadores' element={
+        <Route path='/jugadores' element={
           <PrivateRoute>
             <JugadoresPage/>
           </PrivateRoute>
         }/>
 
-        <Route path='partidos' element={
+        <Route path='/partidos' element={
           <PrivateRoute>
             <PartidosPage/>
           </PrivateRoute>
         }/>
 
-        <Route path='torneos' element={
+        <Route path='/torneos' element={
           <PrivateRoute>
             <TorneosPage/>
           </PrivateRoute>

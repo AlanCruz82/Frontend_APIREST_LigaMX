@@ -1,4 +1,4 @@
-const url = 'http:localhost:8080/log-in';
+const url = 'http://localhost:8080/api/v1/auth/log-in';
 
 export async function peticionLogin(usuario, contrasena){
     //Generamos la peticion http al backend con las credenciales ingresadas por el login
@@ -18,6 +18,9 @@ export async function peticionLogin(usuario, contrasena){
         throw new Error("Credenciales incorrectas");
     }
 
-    //Obtenemos y regresamos el jwt de la respuesta http obtenida del backend
-    return { jwt } = response.json();
+    //Obtenemos el jwt del json regresado por parte del backend
+    const { jwt } = await response.json();
+
+    //Regresamos el token obtenido como respuesta
+    return jwt;
 }
