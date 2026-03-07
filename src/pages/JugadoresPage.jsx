@@ -1,7 +1,10 @@
+import { NavBar } from "../components/NavBar";
+
 export function JugadoresPage(){
     return(
         <>
-            <h1>Pagina de equipos</h1>
+            <NavBar/>
+            <h1>Pagina de jugadores</h1>
         </>
     );
 }

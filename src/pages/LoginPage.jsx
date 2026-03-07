@@ -35,11 +35,16 @@ export function LoginPage(){
 
     return(
         <div>
-            <h1>!Bienvenido!, ingresa tus credenciales</h1>
+            <h1>!Bienvenido!
+                <br />
+                LIGA MX
+            </h1>
             <form action={ingresar}>
+                <label htmlFor="usuario">Usuario</label>
                 <input type="text" placeholder="usuario" value={usuario} 
                 onChange={(usuario) => {setUsuario(usuario.target.value)}}/>
 
+                <label htmlFor="contrasena">Contrasena</label>
                 <input type="password" placeholder="contrasena" value={contrasena} 
                 onChange={(contrasena) => {setContrasena(contrasena.target.value)}}/>
 
