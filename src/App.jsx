@@ -10,6 +10,8 @@ import { JugadoresPage } from './pages/JugadoresPage'
 import { TorneosPage } from './pages/TorneosPage'
 import { PartidosPage } from './pages/PartidosPage'
 
+import { DetalleEquipoPage } from './pages/DetalleEquipoPage'
+
 function App() {
   return(
     //Definicion de las rutas de nuestra pagina
@@ -23,6 +25,12 @@ function App() {
         <Route path='/equipos' element={
           <PrivateRoute>
             <EquiposPage/>
+          </PrivateRoute>
+        }/>
+
+        <Route path='/equipos/:id' element={
+          <PrivateRoute>
+            <DetalleEquipoPage/>
           </PrivateRoute>
         }/>
 
