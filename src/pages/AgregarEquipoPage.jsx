@@ -17,7 +17,7 @@ export function AgregarEquipoPage(){
 
     return(
         <>
-           <FormularioEquipo envio={registrar} tipo={"Crear"}/>
+           <FormularioEquipo accion={registrar} tipo={"Crear"}/>
         </>
     );
 }

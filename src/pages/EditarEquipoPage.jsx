@@ -10,6 +10,7 @@ export function EditarEquipoPage(){
     const { id } = useParams();
     
     //Estado para almacenar el equipo especificado con el id de la url
+    //incializamos el equipo como un objeto vacio para pasarlo al compomente del formulario
     const [ equipo, setEquipo ] = useState({});
 
     //Funcion para poder redireccionar la pagina una vez se haya editado el equipo
@@ -18,10 +19,7 @@ export function EditarEquipoPage(){
     //Hacemos la llamada a la api para obtener los valores del equipo con el id especificado
     useEffect(() => {
         obtenerEquipoId(id).then(
-            dato => {
-                //Establecemos el equipo obtenido con el id enviado
-                setEquipo(dato)
-            }
+            setEquipo
         ).catch(error => console.error(error))
     },[id]);
 
@@ -34,6 +32,11 @@ export function EditarEquipoPage(){
         ).catch(error => console.error(error))
     };
 
+    //Si el equipo no se ha cargado/establecido, esperamos y mientras mostramos un mensaje de informativo
+    if(!equipo){
+        <p>Cargando equipo...</p>
+    }
+    
     return(
         <>
            <FormularioEquipo valores={equipo} accion={actualizarEquipo} tipo={"Actualizar"}/> 

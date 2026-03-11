@@ -8,12 +8,15 @@ export function FormularioEquipo({valores = {}, accion, tipo}){
     const [ ciudad, setCiudad ] = useState(valores.ciudad || "");
     const [ estadio, setEstadio ] = useState(valores.estadio || "");
 
-    //Refrescando los valores del equipo ya que al inicio son vacios porque no se ha hecho la llamada a la api
+    //Refrescando los valores del equipo para que, en caso de tener un valor establecerlo en los inputs, caso
+    //contrario (crearEquipo) dejarlos vacios
     useEffect(()=>{
-        setNombre(valores.nombre || "");
-        setCiudad(valores.ciudad || "");
-        setEstadio(valores.estadio || "");
-    },[valores]);
+        if(valores){
+            setNombre(valores.nombre || "");
+            setCiudad(valores.ciudad || "");
+            setEstadio(valores.estadio || "");
+        }
+    },[valores?.nombre, valores?.ciudad, valores?.estadio]);
  
     const ejecucionForm = (evento) => {
         //Evitamos que la pagina se recargue al enviar el formulario
