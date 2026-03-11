@@ -22,6 +22,13 @@ export async function apiFetch(url, options = {}){
         throw new Error(`Error HTTP: ${response.status}`);
     }
 
+
+    //Validacion para los escenarios en el que se elimine un recurso y el backend no regrese contenido en la
+    //respuesta
+    if(response.status == 204){
+        return null;
+    }
+    
     //Regresamos la respuesta HTTP como un objeto JSON
     return response.json();
 }

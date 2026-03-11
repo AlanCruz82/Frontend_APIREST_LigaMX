@@ -1,7 +1,6 @@
 import { NavBar } from "../components/NavBar";
 import { useState,useEffect} from "react";
-import { getEquipos } from "../api/getEquipos";
-import { useParams } from "react-router-dom";
+import { eliminarEquipo, obtenerEquipos } from "../api/equiposApi";
 import { Link } from "react-router-dom";
 
 export function EquiposPage(){
@@ -16,15 +15,21 @@ export function EquiposPage(){
     const [busCiudad, setBusCiudad] = useState("");
     const [busEstadio, setBusEstadio] = useState("");
 
-    const { id } = useParams();
-
+    
     useEffect(() => {
         //Obtenemos los equipos haciendo llamada asincrona a la api a traves de getEquipos
-        getEquipos(busCiudad,busEstadio).then(
+        obtenerEquipos(busCiudad,busEstadio).then(
             datos => setEquipos(datos)
         ).catch(error => console.log(error))
     },[busCiudad,busEstadio])
 
+
+    const eliminar = (id) => {
+        eliminarEquipo(id).then(
+            //Actualizamos los equipos para mostrarlos sin el equipo con el id enviado
+            () => setEquipos(equipos.filter(e => e.id !== id))
+        ).catch(() => alert('El equipo tiene jugadores o partidos asociados, no se puede eliminar'))
+    }
     return(
         <>
             <NavBar/>
@@ -60,8 +65,8 @@ export function EquiposPage(){
                         <td>{equipo.ciudad}</td>
                         <td>{equipo.estadio}</td>
                         <td>
-                            <button><Link to={`/equipos/${equipo.id}`}>Editar</Link></button>
-                            <button>Eliminar</button>
+                            <Link to={`/equipos/${equipo.id}`}><button>Editar</button></Link>
+                            <button onClick={() => eliminar(equipo.id)}>Eliminar</button>
                         </td>
                     </tr>
                 ))}
@@ -69,8 +74,10 @@ export function EquiposPage(){
             </table>
 
             <section>
-                <label htmlFor="">Agregar equipo</label>
-                <button>Agregar</button>
+                <label>Agregar equipo</label>
+                <div>
+                    <button><Link to="/agregarEquipo">Agregar</Link></button>
+                </div>
             </section>
         </>
     );

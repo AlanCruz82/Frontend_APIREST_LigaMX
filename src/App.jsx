@@ -10,7 +10,8 @@ import { JugadoresPage } from './pages/JugadoresPage'
 import { TorneosPage } from './pages/TorneosPage'
 import { PartidosPage } from './pages/PartidosPage'
 
-import { DetalleEquipoPage } from './pages/DetalleEquipoPage'
+import { EditarEquipoPage } from './pages/EditarEquipoPage'
+import { AgregarEquipoPage } from './pages/AgregarEquipoPage'
 
 function App() {
   return(
@@ -30,7 +31,13 @@ function App() {
 
         <Route path='/equipos/:id' element={
           <PrivateRoute>
-            <DetalleEquipoPage/>
+            <EditarEquipoPage/>
+          </PrivateRoute>
+        }/>
+
+        <Route path='/agregarEquipo' element={
+          <PrivateRoute>
+            <AgregarEquipoPage/>
           </PrivateRoute>
         }/>
 
