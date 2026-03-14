@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import { obtenerEquipoId } from "../api/equiposApi";
-import { editarEquipo } from "../api/equiposApi";
-import { FormularioEquipo } from "../components/FormularioEquipo";
+import { obtenerEquipoId } from "../../api/equiposApi";
+import { editarEquipo } from "../../api/equiposApi";
+import { FormularioEquipo } from "../../components/FormularioEquipo";
 import { useNavigate } from "react-router-dom";
 
 export function EditarEquipoPage(){

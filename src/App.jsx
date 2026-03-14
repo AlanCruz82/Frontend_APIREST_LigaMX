@@ -5,13 +5,15 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 import { LoginPage } from './pages/LoginPage'
-import { EquiposPage } from './pages/EquiposPage'
-import { JugadoresPage } from './pages/JugadoresPage'
+import { EquiposPage } from './pages/equipos/EquiposPage'
+import { JugadoresPage } from './pages//jugadores/JugadoresPage'
 import { TorneosPage } from './pages/TorneosPage'
 import { PartidosPage } from './pages/PartidosPage'
 
-import { EditarEquipoPage } from './pages/EditarEquipoPage'
-import { AgregarEquipoPage } from './pages/AgregarEquipoPage'
+import { EditarEquipoPage } from './pages/equipos/EditarEquipoPage'
+import { AgregarEquipoPage } from './pages/equipos/AgregarEquipoPage'
+import { AgregarJugadorPage } from './pages/jugadores/AgregarJugadorPage'
+import { EditarJugadorPage } from './pages/jugadores/EditarJugadorPage'
 
 function App() {
   return(
@@ -44,6 +46,18 @@ function App() {
         <Route path='/jugadores' element={
           <PrivateRoute>
             <JugadoresPage/>
+          </PrivateRoute>
+        }/>
+
+        <Route path='/jugadores/:id' element={
+          <PrivateRoute>
+            <EditarJugadorPage/>
+          </PrivateRoute>
+        }/>
+
+        <Route path='/agregarJugador' element={
+          <PrivateRoute>
+            <AgregarJugadorPage/>
           </PrivateRoute>
         }/>
 

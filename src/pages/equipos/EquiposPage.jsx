@@ -1,6 +1,6 @@
-import { NavBar } from "../components/NavBar";
+import { NavBar } from "../../components/NavBar";
 import { useState,useEffect} from "react";
-import { eliminarEquipo, obtenerEquipos } from "../api/equiposApi";
+import { eliminarEquipo, obtenerEquipos } from "../../api/equiposApi";
 import { Link } from "react-router-dom";
 
 export function EquiposPage(){
@@ -30,6 +30,7 @@ export function EquiposPage(){
             () => setEquipos(equipos.filter(e => e.id !== id))
         ).catch(() => alert('El equipo tiene jugadores o partidos asociados, no se puede eliminar'))
     }
+    
     return(
         <>
             <NavBar/>
