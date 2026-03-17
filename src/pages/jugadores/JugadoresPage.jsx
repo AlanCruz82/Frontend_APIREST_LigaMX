@@ -86,11 +86,11 @@ export function JugadoresPage(){
         </table>
 
         <section>
-                <label>Agregar jugador</label>
-                <div>
-                    <Link to="/agregarJugador"><button>Agregar</button></Link>
-                </div>
-            </section>
+            <label>Agregar jugador</label>
+            <div>
+              <Link to="/agregarJugador"><button>Agregar</button></Link>
+            </div>
+        </section>
       </>
     );
 }

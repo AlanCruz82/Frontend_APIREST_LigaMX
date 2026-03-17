@@ -8,13 +8,13 @@ import { LoginPage } from './pages/LoginPage'
 import { EquiposPage } from './pages/equipos/EquiposPage'
 import { JugadoresPage } from './pages//jugadores/JugadoresPage'
 import { TorneosPage } from './pages/TorneosPage'
-import { PartidosPage } from './pages/PartidosPage'
+import { PartidosPage } from './pages/partidos/PartidosPage'
 
 import { EditarEquipoPage } from './pages/equipos/EditarEquipoPage'
 import { AgregarEquipoPage } from './pages/equipos/AgregarEquipoPage'
 import { AgregarJugadorPage } from './pages/jugadores/AgregarJugadorPage'
 import { EditarJugadorPage } from './pages/jugadores/EditarJugadorPage'
-
+import { AgregarPartidoPage } from './pages/partidos/AgregarPartidoPage'
 function App() {
   return(
     //Definicion de las rutas de nuestra pagina
@@ -64,6 +64,12 @@ function App() {
         <Route path='/partidos' element={
           <PrivateRoute>
             <PartidosPage/>
+          </PrivateRoute>
+        }/>
+
+        <Route path='/agregarPartido' element={
+          <PrivateRoute>
+            <AgregarPartidoPage/>
           </PrivateRoute>
         }/>
 
