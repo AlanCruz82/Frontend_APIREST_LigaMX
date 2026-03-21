@@ -60,99 +60,155 @@ export function FormularioJugador ({valores = {}, accion, tipo, equipos = []}){
     };
 
     return (
-      <>
+      <form onSubmit={ejecucionForm} className="max-w-sm mx-auto">
         <h1>{tipo} jugador</h1>
-
-        <form onSubmit={ejecucionForm}>
+        <div className="grid gap-6 mb-6 md:grid-cols-2">
           <div>
-            <label htmlFor="nombre">Nombre</label>
+            <label
+              htmlFor="nombre"
+              className="block mb-2.5 text-sm font-medium text-heading"
+            >
+              Nombre
+            </label>
             <input
               type="text"
               name="nombre"
               placeholder="Jorge"
+              className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
               value={jugador.nombre}
               onChange={establecerCambio}
             />
           </div>
-
           <div>
-            <label htmlFor="apellidoPaterno">Apellido Paterno</label>
+            <label
+              htmlFor="apellidoPaterno"
+              className="block mb-2.5 text-sm font-medium text-heading"
+            >
+              Apellido Paterno
+            </label>
             <input
               type="text"
               name="apellidoPaterno"
               placeholder="Gutierrez"
+              className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
               value={jugador.apellidoPaterno}
               onChange={establecerCambio}
             />
           </div>
-
+        </div>
+        <div className="grid gap-6 mb-6 md:grid-cols-2">
           <div>
-            <label htmlFor="apellidoMaterno">Apellido Materno</label>
+            <label
+              htmlFor="apellidoMaterno"
+              className="block mb-2.5 text-sm font-medium text-heading"
+            >
+              Apellido Materno
+            </label>
             <input
               type="text"
               name="apellidoMaterno"
               placeholder="Sosa"
+              className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
               value={jugador.apellidoMaterno}
               onChange={establecerCambio}
             />
           </div>
-
           <div>
-            <label htmlFor="fechaNacimiento">Fecha de nacimiento</label>
-            <input
-              type="date"
-              name="fechaNacimiento"
-              value={jugador.fechaNacimiento}
-              onChange={establecerCambio}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="pais">Pais</label>
+            <label
+              htmlFor="pais"
+              className="block mb-2.5 text-sm font-medium text-heading"
+            >
+              Pais
+            </label>
             <input
               type="text"
               name="pais"
               placeholder="Mexico"
+              className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
               value={jugador.pais}
               onChange={establecerCambio}
             />
           </div>
-
+        </div>
+        <div className="grid gap-6 mb-6 md:grid-cols-2">
           <div>
-            <label htmlFor="selector-posicion">Elige la posicion</label>
-            <select id="selector-posicion" value={jugador.posicion} name="posicion" 
-            onChange={establecerCambio}>
-                <option value="" disabled>
+            <label
+              htmlFor="selector-posicion"
+              className="block mb-2.5 text-sm font-medium text-heading"
+            >
+              Elige la posicion
+            </label>
+            <select
+              id="selector-posicion"
+              value={jugador.posicion}
+              name="posicion"
+              className="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
+              onChange={establecerCambio}
+            >
+              <option value="" disabled>
                 ---Posicion---
-                </option>
-                {posiciones.map((posicion) => (
+              </option>
+              {posiciones.map((posicion) => (
                 <option key={posicion.id} value={posicion.nombre}>
-                    {posicion.nombre}
+                  {posicion.nombre}
                 </option>
-                ))}
+              ))}
             </select>
           </div>
-
           <div>
-            <label htmlFor="selector-equipo">Elige un equipo</label>
-            <select id="selector-equipo" value={jugador.idEquipo} name="idEquipo"
-            onChange={establecerCambio}>
-                <option value="" disabled>
+            <label
+              htmlFor="selector-equipo"
+              className="block mb-2.5 text-sm font-medium text-heading"
+            >
+              Elige un equipo
+            </label>
+            <select
+              id="selector-equipo"
+              value={jugador.idEquipo}
+              name="idEquipo"
+              className="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
+              onChange={establecerCambio}
+            >
+              <option value="" disabled>
                 ---Elige un equipo---
-                </option>
-                {equipos.map((equipo) => (
+              </option>
+              {equipos.map((equipo) => (
                 <option key={equipo.id} value={equipo.id}>
-                    {equipo.nombre}
+                  {equipo.nombre}
                 </option>
-                ))}
+              ))}
             </select>
           </div>
+          <div className="mb-5">
+          <label
+            htmlFor="fechaNacimiento"
+            className="block mb-2.5 text-sm font-medium text-heading"
+          >
+            Fecha de nacimiento
+          </label>
+          <input
+            type="date"
+            name="fechaNacimiento"
+            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+            value={jugador.fechaNacimiento}
+            onChange={establecerCambio}
+          />
+        </div>
+        </div>
 
-          <button type="submit">{tipo}</button>
+        <div className="flex justify-center gap-3 mt-4">
+          <button
+            type="submit"
+            className="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+            {tipo}
+          </button>
           <Link to="/jugadores">
-            <button type="button">Regresar</button>
+            <button type="button" className="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+            Regresar
+            </button>
           </Link>
-        </form>
-      </>
+        </div>
+
+      </form>
     );
 }

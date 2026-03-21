@@ -39,11 +39,23 @@ export function JugadoresPage(){
     return (
       <>
         <NavBar />
-        <h1>Jugadores</h1>
+        <h1 className="mt-20 text-2xl font-bold">Jugadores</h1>
 
-        <label htmlFor="selector-equipo">Elige un equipo</label>
-        <select id="selector-equipo" value={equipo} onChange={(e) => setEquipo(e.target.value)}>
-          <option value="" disabled>---Elige un equipo---</option>
+        <label
+          htmlFor="selector-equipo"
+          className="block mb-2.5 text-sm font-medium text-heading"
+        >
+          Elige un equipo
+        </label>
+        <select
+          id="selector-equipo"
+          value={equipo}
+          onChange={(e) => setEquipo(e.target.value)}
+          className="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
+        >
+          <option value="" disabled>
+            ---Elige un equipo---
+          </option>
           {equipos.map((equipo) => (
             <option key={equipo.id} value={equipo.id}>
               {equipo.nombre}
@@ -51,45 +63,61 @@ export function JugadoresPage(){
           ))}
         </select>
 
-        <table border="3">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>APaterno</th>
-              <th>AMaterno</th>
-              <th>Fecha Nacimiento</th>
-              <th>Pais</th>
-              <th>Posicion</th>
-              <th>Equipo</th>
-              <th>Accion</th>
-            </tr>
-          </thead>
-          <tbody>
-            {jugadores.map((jugador) => (
-              <tr key={jugador.id}>
-                <td>{jugador.id}</td>
-                <td>{jugador.nombre}</td>
-                <td>{jugador.apellidoPaterno}</td>
-                <td>{jugador.apellidoMaterno}</td>
-                <td>{jugador.fechaNacimiento}</td>
-                <td>{jugador.pais}</td>
-                <td>{jugador.posicion}</td>
-                <td>{jugador.equipo.nombre}</td>
-                <td>
-                  <Link to={`/jugadores/${jugador.id}`}><button>Editar</button></Link>
-                  <button onClick={() => eliminar(jugador.id)}>Eliminar</button>
-                </td>
+        <div className="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+          {/* Validamos si nuestra lista de jugadores tiene elementos para en que caso de no tener mostrar un mensaje informativo */}
+          {jugadores.length === 0 ? <p>Sin jugadores para mostrar</p> :
+          <table className="w-full text-sm text-left rtl:text-right text-body">
+            <thead>
+              <tr>
+                <th scope="col" className="px-6 py-3 font-medium">ID</th>
+                <th scope="col" className="px-6 py-3 font-medium">Nombre</th>
+                <th scope="col" className="px-6 py-3 font-medium">APaterno</th>
+                <th scope="col" className="px-6 py-3 font-medium">AMaterno</th>
+                <th scope="col" className="px-6 py-3 font-medium">Fecha Nacimiento</th>
+                <th scope="col" className="px-6 py-3 font-medium">Pais</th>
+                <th scope="col" className="px-6 py-3 font-medium">Posicion</th>
+                <th scope="col" className="px-6 py-3 font-medium">Equipo</th>
+                <th scope="col" className="px-6 py-3 font-medium">Accion</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {jugadores.map((jugador) => (
+                <tr key={jugador.id} className="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+                  <td className="px-6 py-4">{jugador.id}</td>
+                  <td className="px-6 py-4">{jugador.nombre}</td>
+                  <td className="px-6 py-4">{jugador.apellidoPaterno}</td>
+                  <td className="px-6 py-4">{jugador.apellidoMaterno}</td>
+                  <td className="px-6 py-4">{jugador.fechaNacimiento}</td>
+                  <td className="px-6 py-4">{jugador.pais}</td>
+                  <td className="px-6 py-4">{jugador.posicion}</td>
+                  <td className="px-6 py-4">{jugador.equipo.nombre}</td>
+                  <td className="px-6 py-4 flex gap-2">
+                    <Link to={`/jugadores/${jugador.id}`}>
+                      <button className="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none"
+                      >
+                        Editar
+                      </button>
+                    </Link>
+                    <button onClick={() => eliminar(jugador.id)}
+                    className="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none">
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>}
+        </div>
 
-        <section>
-            <label>Agregar jugador</label>
-            <div>
-              <Link to="/agregarJugador"><button>Agregar</button></Link>
-            </div>
+        <section className="mt-6">
+          <label className="block mb-2 font-medium">Agregar jugador</label>
+          <div>
+            <button className="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none">
+              <Link to="/agregarJugador" className="flex items-center gap-2">
+                Agregar
+              </Link>
+            </button>
+          </div>
         </section>
       </>
     );
