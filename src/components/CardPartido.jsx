@@ -1,47 +1,50 @@
-export function CardPartido({partido}){
-    return (
-      <div className="tarjeta-partido">
-        <div className="encabezado-partido">
-          <span className="jornada-partido">Jornada {partido.jornada}</span>
-          <br />
-          <span className="fecha-hora-partido">{(partido.fechaHoraInicio).split("T").join(" ")}</span>
+export function CardPartido({ partido }) {
+  return (
+    <div className="max-w-md bg-white border border-gray-200 rounded-lg shadow-sm p-4">
+      {/* Encabezado */}
+      <div className="flex justify-between items-center mb-3 border-b pb-2">
+        <span className="text-sm font-medium text-gray-500">
+          Jornada {partido.jornada}
+        </span>
+        <span className="text-sm text-gray-400">
+          {partido.fechaHoraInicio.split("T").join(" ")}
+        </span>
+      </div>
+
+      {/* Cuerpo */}
+      <div className="flex items-center justify-between">
+        {/* Equipo local */}
+        <div className="text-center flex-1">
+          <p className="font-semibold text-gray-800">
+            {partido.detallesPartido[0].equipo.nombre}
+          </p>
+          <p className="text-2xl font-bold text-gray-900">
+            {partido.detallesPartido[0].goles}
+          </p>
+          <p className="text-xs text-gray-500">
+            {partido.detallesPartido[0].rolEquipo}
+          </p>
         </div>
 
-        <div className="cuerpo-partido">
-          <div className="detalle-equipo-local">
-            <span className="equipo-local">
-              {partido.detallesPartido[0].equipo.nombre}
-            </span>
-            <br />
-            <span className="goles-local">
-              {partido.detallesPartido[0].goles}
-            </span>
-            <br />
-            <span className="rol-local">
-              {partido.detallesPartido[0].rolEquipo}
-            </span>
-          </div>
+        {/* Marcador */}
+        <div className="px-4 text-xl font-bold text-gray-700">
+          {partido.detallesPartido[0].goles} -{" "}
+          {partido.detallesPartido[1].goles}
+        </div>
 
-          <div className="marcador-partido">
-            {partido.detallesPartido[0].goles} -{" "}
+        {/* Equipo visitante */}
+        <div className="text-center flex-1">
+          <p className="font-semibold text-gray-800">
+            {partido.detallesPartido[1].equipo.nombre}
+          </p>
+          <p className="text-2xl font-bold text-gray-900">
             {partido.detallesPartido[1].goles}
-          </div>
-
-          <div className="detalle-equipo-visitante">
-            <span className="equipo-visitante">
-              {partido.detallesPartido[1].equipo.nombre}
-            </span>
-            <br />
-            <span className="goles-local">
-              {partido.detallesPartido[1].goles}
-            </span>
-            <br />
-            <span className="rol-local">
-              {partido.detallesPartido[1].rolEquipo}
-            </span>
-            <br />
-          </div>
+          </p>
+          <p className="text-xs text-gray-500">
+            {partido.detallesPartido[1].rolEquipo}
+          </p>
         </div>
       </div>
-    );
+    </div>
+  );
 }

@@ -40,59 +40,84 @@ export function PartidosPage(){
     return (
       <>
         <NavBar />
-        <h1>Partidos</h1>
+        <h1 className="mt-20 text-2xl font-bold">Partidos</h1>
 
-        <div>
-          <label htmlFor="selector-equipo">Elige un equipo</label>
-          <select
-            id="selector-equipo"
-            value={equipo}
-            onChange={(e) => setEquipo(e.target.value)}
-          >
-            <option value="" disabled>
-              ---Elige un equipo---
-            </option>
-            {equipos.map((equipo) => (
-              <option key={equipo.id} value={equipo.id}>
-                {equipo.nombre}
+        <div className="grid gap-6 mb-6 md:grid-cols-3 items-end">
+          <div>
+            <label
+              htmlFor="selector-equipo"
+              className="block mb-2.5 text-sm font-medium text-heading"
+            >
+              Elige un equipo
+            </label>
+            <select
+              id="selector-equipo"
+              className="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
+              value={equipo}
+              onChange={(e) => setEquipo(e.target.value)}
+            >
+              <option value="" disabled>
+                ---Elige un equipo---
               </option>
-            ))}
-          </select>
+              {equipos.map((equipo) => (
+                <option key={equipo.id} value={equipo.id}>
+                  {equipo.nombre}
+                </option>
+              ))}
+            </select>
+          </div>
 
-          <label htmlFor="selector-torneo">Elige un torneo</label>
-          <select
-            id="selector-torneo"
-            value={torneo}
-            onChange={(e) => setTorneo(e.target.value)}
-          >
-            <option value="" disabled>
-              ---Elige un torneo---
-            </option>
-            {torneos.map((torneo) => (
-              <option key={torneo.id} value={torneo.id}>
-                {torneo.nombre} {torneo.anio}
+          <div>
+            <label
+              htmlFor="selector-torneo"
+              className="block mb-2.5 text-sm font-medium text-heading"
+            >
+              Elige un torneo
+            </label>
+            <select
+              id="selector-torneo"
+              value={torneo}
+              className="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
+              onChange={(e) => setTorneo(e.target.value)}
+            >
+              <option value="" disabled>
+                ---Elige un torneo---
               </option>
-            ))}
-          </select>
+              {torneos.map((torneo) => (
+                <option key={torneo.id} value={torneo.id}>
+                  {torneo.nombre} {torneo.anio}
+                </option>
+              ))}
+            </select>
+          </div>
 
-          <button onClick={() => busquedaPartidos(equipo, torneo)}>
-            Buscar
-          </button>
+          <div className="flex">
+            <button
+              className="w-full text-body bg-neutral-secondary-medium border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none transition-all"
+              onClick={() => busquedaPartidos(equipo, torneo)}
+            >
+              Buscar
+            </button>
+          </div>
         </div>
-        
+
         {/* Validamos si nuestra lista de partidos tiene partidos para mostrar, en caso de no tener mostramos
         una mensaje informativo, caso contrario mostramos los partidos del equipo y torneo seleccionado */}
         {partidos.length === 0 ? (
           <p>Sin partidos para mostrar</p>
-        ) : partidos.map(partido => (
-          <CardPartido partido={partido} key={partido.id}/>
-        ))}
+        ) : (
+          partidos.map((partido) => (
+            <CardPartido partido={partido} key={partido.id} />
+          ))
+        )}
 
         <section>
-            <label>Agregar partido</label>
-            <div>
-              <Link to="/agregarPartido"><button>Agregar</button></Link>
-            </div>
+          <label>Agregar partido</label>
+          <div>
+            <Link to="/agregarPartido">
+              <button>Agregar</button>
+            </Link>
+          </div>
         </section>
       </>
     );
