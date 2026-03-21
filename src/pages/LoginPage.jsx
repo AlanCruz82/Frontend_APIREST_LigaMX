@@ -33,23 +33,50 @@ export function LoginPage(){
         }
     };
 
-    return(
-        <div>
-            <h1>!Bienvenido!
-                <br />
-                LIGA MX
-            </h1>
-            <form action={ingresar}>
-                <label htmlFor="usuario">Usuario</label>
-                <input type="text" placeholder="usuario" value={usuario} 
-                onChange={(usuario) => {setUsuario(usuario.target.value)}}/>
-
-                <label htmlFor="contrasena">Contrasena</label>
-                <input type="password" placeholder="contrasena" value={contrasena} 
-                onChange={(contrasena) => {setContrasena(contrasena.target.value)}}/>
-
-                <button type="submit">Ingresar</button>
-            </form>
+    return (
+      <form className="max-w-sm mx-auto" action={ingresar}>
+        <h1>
+          !Bienvenido!
+          <br />
+          Liga MX
+        </h1>
+        <div className="mb-5">
+          <label
+            htmlFor="usuario"
+            className="block mb-2.5 text-sm font-medium text-heading"
+          >
+            Usuario
+          </label>
+          <input
+            type="text"
+            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+            placeholder="miusuario"
+            onChange={(evento) => setUsuario(evento.target.value)}
+            required
+          />
         </div>
+        <div className="mb-5">
+          <label
+            htmlFor="contrasena"
+            className="block mb-2.5 text-sm font-medium text-heading"
+          >
+            Contraseña
+          </label>
+          <input
+            type="password"
+            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+            placeholder="••••••••"
+            onChange={(evento) => setContrasena(evento.target.value)}
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+        >
+          Ingresar
+        </button>
+      </form>
     );
 }

@@ -3,62 +3,112 @@ import { Link } from "react-router-dom";
 
 export function FormularioEquipo({valores = {}, accion, tipo}){
     
-    //Estados para almacenar los valores iniciales del equipo enviados como parametro
-    const [ nombre, setNombre ] = useState(valores.nombre || "");
-    const [ ciudad, setCiudad ] = useState(valores.ciudad || "");
-    const [ estadio, setEstadio ] = useState(valores.estadio || "");
+    //Estado para almacenar los valores del equipo
+    const [ equipo, setEquipo ] = useState({
+        //Inicializamos el valor de cada propiedad en vacio (escenario inicial en el que se quiere crear un equipo)
+        nombre : "",
+        ciudad : "",
+        estadio : "",
+    });
 
-    //Refrescando los valores del equipo para que, en caso de tener un valor establecerlo en los inputs, caso
-    //contrario (crearEquipo) dejarlos vacios
+    //Refrescamos los valores del los inputs en caso de que la prop valores tenga contenido o haya cambiado
+    //de valor
     useEffect(()=>{
-        if(valores){
-            setNombre(valores.nombre || "");
-            setCiudad(valores.ciudad || "");
-            setEstadio(valores.estadio || "");
+        if(valores && Object.keys(valores).length > 0){
+            //Establecemos los valores enviados como prop y en caso de no tener un valor asignado las
+            //dejamos vacias
+            setEquipo({
+                nombre : valores.nombre || "",
+                ciudad : valores.ciudad || "",
+                estadio : valores.estadio || "",
+            });
         }
-    },[valores?.nombre, valores?.ciudad, valores?.estadio]);
+    },[valores]);
  
-    const ejecucionForm = (evento) => {
-        //Evitamos que la pagina se recargue al enviar el formulario
-        evento.preventDefault();
-
-        //Generemos el equipo que vamos a enviar o editar con las propiedades enviadas o generadas
-        const equipo = {
-            nombre,
-            ciudad,
-            estadio,
-        }
-
+    const ejecucionForm = () => {
         //Ejecutamos la funcion enviada como parametro que va a realizar la logica de la llamada a la api
         accion(equipo);
     }
 
-    return(
-        <>
-            <h1>{tipo} equipo</h1>
-            
-            <form onSubmit={ejecucionForm}>
-                <div>
-                    <label htmlFor="nombre">Equipo</label>
-                    <input type="text" name="nombre" placeholder="Club America" value={nombre}
-                    onChange={e => setNombre(e.target.value)}/>
-                </div>
+    //Funcion para establecer el valor del campo del equipo por el que se esta colocando en el input
+    const establecerCambio = (evento) => {
+      //Obtenemos el nombre y el valor del input
+      const { name, value } = evento.target;
 
-                <div>
-                    <label htmlFor="ciudad">Ciudad</label>
-                    <input type="text" name="ciudad" placeholder="CDMX" value={ciudad}
-                    onChange={e => setCiudad(e.target.value)}/>
-                </div>
+      //Establecemos el valor del campo del equipo por el del input
+      setEquipo({
+        ...equipo, //Copiamos el equipo
+        [name] : value, //Establecemos el valor del campo con el nombre del input con su valor actual
+      })
+    };
 
-                <div>
-                    <label htmlFor="estadio">Estadio</label>
-                    <input type="text" name="estadio" placeholder="Estadio Banorte" value={estadio}
-                    onChange={e => setEstadio(e.target.value)}/>
-                </div>
+    return (
+      <form className="max-w-sm mx-auto" action={ejecucionForm}>
+        <h1>{tipo} Equipo</h1>
+        <div className="mb-5">
+          <label
+            htmlFor="nombre"
+            className="block mb-2.5 text-sm font-medium text-heading"
+          >
+            Nombre
+          </label>
+          <input
+            type="text"
+            name="nombre"
+            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+            placeholder="Club America"
+            value={equipo.nombre}
+            onChange={establecerCambio}
+            required
+          />
+        </div>
+        <div className="mb-5">
+          <label
+            htmlFor="ciudad"
+            className="block mb-2.5 text-sm font-medium text-heading"
+          >
+            Ciudad
+          </label>
+          <input
+            type="text"
+            name="ciudad"
+            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+            placeholder="CDMX"
+            value={equipo.ciudad}
+            onChange={establecerCambio}
+            required
+          />
+        </div>
+        <div className="mb-5">
+          <label
+            htmlFor="estadio"
+            className="block mb-2.5 text-sm font-medium text-heading"
+          >
+            Estadio
+          </label>
+          <input
+            type="text"
+            name="estadio"
+            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+            placeholder="Estadio Banorte"
+            value={equipo.estadio}
+            onChange={establecerCambio}
+            required
+          />
+        </div>
 
-                <button type="submit">{tipo}</button>
-                <Link to="/equipos"><button type="button">Regresar</button></Link>
-            </form>
-        </>
+        <div className="flex justify-center gap-3 mt-4">
+          <button
+            type="submit"
+            className="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+            {tipo}
+          </button>
+          <Link to="/equipos">
+            <button type="button" className="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+            Regresar
+            </button>
+          </Link>
+        </div>
+      </form>
     );
 }
