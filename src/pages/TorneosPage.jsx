@@ -31,11 +31,12 @@ export function TorneosPage(){
     return (
       <>
         <NavBar />
-        <h1>Torneos</h1>
+        <h1 className="mt-20 text-2xl font-bold">Torneos</h1>
 
-        <label htmlFor="selector-torneo">Elige un torneo</label>
+        <label htmlFor="selector-torneo" className="block mb-2.5 text-sm font-medium text-heading">Elige un torneo</label>
         <select
           id="selector-torneo"
+          className="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
           value={torneo}
           onChange={(e) => setTorneo(e.target.value)}
         >
@@ -49,33 +50,34 @@ export function TorneosPage(){
           ))}
         </select>
 
-        {/* Si los detalles no tiene contenido, mostramos un mensaje informativo para avisarle al usuario */}
-        {detalles.length === 0 ? (<p>Selecciona un torneo</p>) :
-        <table border="3">
-          <thead>
-            <tr>
-              <th>Posicion</th>
-              <th>Equipo</th>
-              <th>Derrotas</th>
-              <th>Empates</th>
-              <th>Victorias</th>
-              <th>Puntos</th>
-            </tr>
-          </thead>
-          <tbody>
-            {detalles.map((detalle, indice) => (
-              <tr key={detalle.equipo.id}>
-                <td>{indice + 1}</td>
-                <td>{detalle.equipo.nombre}</td>
-                <td>{detalle.derrotas}</td>
-                <td>{detalle.empates}</td>
-                <td>{detalle.victorias}</td>
-                <td>{detalle.puntos}</td>
+        <div className="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+          {/* Si los detalles no tiene contenido, mostramos un mensaje informativo para avisarle al usuario */}
+          {detalles.length === 0 ? (<p>Selecciona un torneo</p>) :
+          <table className="w-full text-sm text-left rtl:text-right text-body"s>
+            <thead>
+              <tr>
+                <th scope="col" className="px-6 py-3 font-medium">Posicion</th>
+                <th scope="col" className="px-6 py-3 font-medium">Equipo</th>
+                <th scope="col" className="px-6 py-3 font-medium">Derrotas</th>
+                <th scope="col" className="px-6 py-3 font-medium">Empates</th>
+                <th scope="col" className="px-6 py-3 font-medium">Victorias</th>
+                <th scope="col" className="px-6 py-3 font-medium">Puntos</th>
               </tr>
-            ))}
-          </tbody>
-        </table>}
-
+            </thead>
+            <tbody>
+              {detalles.map((detalle, indice) => (
+                <tr key={detalle.equipo.id} className="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+                  <td className="px-6 py-4">{indice + 1}</td>
+                  <td className="px-6 py-4">{detalle.equipo.nombre}</td>
+                  <td className="px-6 py-4">{detalle.derrotas}</td>
+                  <td className="px-6 py-4">{detalle.empates}</td>
+                  <td className="px-6 py-4">{detalle.victorias}</td>
+                  <td className="px-6 py-4 font-bold">{detalle.puntos}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>}
+        </div>
       </>
     );
 }

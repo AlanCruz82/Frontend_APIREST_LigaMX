@@ -1,6 +1,6 @@
 export function CardPartido({ partido }) {
   return (
-    <div className="max-w-md bg-white border border-gray-200 rounded-lg shadow-sm p-4">
+    <div className="max-w-md bg-white border border-gray-200 rounded-lg shadow-sm p-4 mt-5">
       {/* Encabezado */}
       <div className="flex justify-between items-center mb-3 border-b pb-2">
         <span className="text-sm font-medium text-gray-500">

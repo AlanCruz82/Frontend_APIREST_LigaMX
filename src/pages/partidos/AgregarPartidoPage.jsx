@@ -77,143 +77,160 @@ export function AgregarPartidoPage(){
     };
 
     return (
-      <>
-        <h1>Registrar partido</h1>
-
-        <form onSubmit={registrar}>
-          <div>
-            <label htmlFor="jornada">Jornada</label>
-            <input
-              type="number"
-              name="jornada"
-              value={partido.jornada}
-              onChange={establecerCambio}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="ciudad">Fecha y hora de inicio</label>
-            <input
-              type="datetime-local"
-              name="fechaHoraInicio"
-              value={partido.fechaHoraInicio}
-              onChange={establecerCambio}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="estadio">Fecha y hora de fin</label>
-            <input
-              type="datetime-local"
-              name="fechaHoraFin"
-              value={partido.fechaHoraFin}
-              onChange={establecerCambio}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="selector-torneo">Elige un torneo</label>
-            <select
-              id="selector-torneo"
-              value={partido.idTorneo}
-              name="idTorneo"
-              onChange={establecerCambio}
-            >
-              <option value="" disabled>
-                ---Elige un torneo---
-              </option>
-              {torneos.map((torneo) => (
-                <option key={torneo.id} value={torneo.id}>
-                  {torneo.nombre} {torneo.anio}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
+        <form onSubmit={registrar} className="max-w-sm mx-auto">
+          <h1>Registrar partido</h1>
+          <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div>
-              <label htmlFor="equipo-local">Equipo local</label>
+              <label htmlFor="jornada" className="block mb-2.5 text-sm font-medium text-heading">Jornada</label>
+              <input
+                type="number"
+                name="jornada"
+                className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                value={partido.jornada}
+                onChange={establecerCambio}
+              />
             </div>
 
             <div>
-              <label htmlFor="selector-equipo">Elige al equipo</label>
+              <label htmlFor="selector-torneo" className="block mb-2.5 text-sm font-medium text-heading">Elige un torneo</label>
               <select
-                id="selector-equipo"
-                value={equipoLocal.idEquipo}
-                onChange={(e) => setEquipoLocal({
-                  ...equipoLocal,
-                  idEquipo: e.target.value,
-                  rolEquipo: "LOCAL",
-                })}
+                id="selector-torneo"
+                className="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
+                value={partido.idTorneo}
+                name="idTorneo"
+                onChange={establecerCambio}
               >
                 <option value="" disabled>
-                  ---Elige un equipo---
+                  ---Elige un torneo---
                 </option>
-                {equipos.map((equipo) => (
-                  <option key={equipo.id} value={equipo.id}>
-                    {equipo.nombre}
+                {torneos.map((torneo) => (
+                  <option key={torneo.id} value={torneo.id}>
+                    {torneo.nombre} {torneo.anio}
                   </option>
                 ))}
               </select>
             </div>
+          </div>
+
+          <div className="grid gap-6 mb-6 md:grid-cols-2">
+            <div>
+              <label htmlFor="fechaHoraInicio" className="block mb-2.5 text-sm font-medium text-heading">Fecha y hora de inicio</label>
+              <input
+                type="datetime-local"
+                name="fechaHoraInicio"
+                className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                value={partido.fechaHoraInicio}
+                onChange={establecerCambio}
+              />
+            </div>
 
             <div>
-              <label htmlFor="goles">Goles</label>
+              <label htmlFor="fechaHoraFin" className="block mb-2.5 text-sm font-medium text-heading">Fecha y hora de fin</label>
               <input
-                type="number"
-                value={equipoLocal.goles}
-                onChange={e => setEquipoLocal({
-                  ...equipoLocal,
-                  goles: e.target.value,
-                })}/>
+                type="datetime-local"
+                name="fechaHoraFin"
+                className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                value={partido.fechaHoraFin}
+                onChange={establecerCambio}
+              />
             </div>
           </div>
 
           <div>
             <div>
-              <label htmlFor="equipo-equipo-visitante">Equipo visitante</label>
+              <label htmlFor="equipo-local" className="block mb-2.5 mt-3 text-sm font-medium text-heading">EQUIPO LOCAL</label>
             </div>
-
-            <div>
-              <label htmlFor="selector-equipo">Elige al equipo</label>
-              <select
-                id="selector-equipo"
-                value={equipoVisitante.idEquipo}
-                onChange={(e) => setEquipoVisitante({
-                  ...equipoVisitante,
-                  idEquipo: e.target.value,
-                  rolEquipo : "VISITANTE",
-                })}
-              >
-                <option value="" disabled>
-                  ---Elige un equipo---
-                </option>
-                {equipos.map((equipo) => (
-                  <option key={equipo.id} value={equipo.id}>
-                    {equipo.nombre}
+            
+            <div className="grid gap-6 mb-6 md:grid-cols-2">
+              <div>
+                <label htmlFor="selector-equipo" className="block mb-2.5 text-sm font-medium text-heading">Elige al equipo</label>
+                <select
+                  id="selector-equipo"
+                  className="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
+                  value={equipoLocal.idEquipo}
+                  onChange={(e) => setEquipoLocal({
+                    ...equipoLocal,
+                    idEquipo: e.target.value,
+                    rolEquipo: "LOCAL",
+                  })}
+                >
+                  <option value="" disabled>
+                    ---Elige un equipo---
                   </option>
-                ))}
-              </select>
-            </div>
+                  {equipos.map((equipo) => (
+                    <option key={equipo.id} value={equipo.id}>
+                      {equipo.nombre}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-            <div>
-              <label htmlFor="goles">Goles</label>
-              <input
-                type="number"
-                value={equipoVisitante.goles}
-                onChange={e => setEquipoVisitante({
-                  ...equipoVisitante,
-                  goles: e.target.value,
-                })}/>
+              <div>
+                <label htmlFor="goles" className="block mb-2.5 text-sm font-medium text-heading">Goles</label>
+                <input
+                  type="number"
+                  className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                  value={equipoLocal.goles}
+                  onChange={e => setEquipoLocal({
+                    ...equipoLocal,
+                    goles: e.target.value,
+                  })}/>
+              </div>
             </div>
           </div>
 
-          <button type="submit">Agregar</button>
-          <Link to="/partidos">
-            <button type="button">Regresar</button>
+          <div>
+            <div>
+              <label htmlFor="equipo-equipo-visitante" className="block mb-2.5 mt-3 text-sm font-medium text-heading">EQUIPO VISITANTE</label>
+            </div>
+
+            <div className="grid gap-6 mb-6 md:grid-cols-2">
+                <div>
+                  <label htmlFor="selector-equipo" className="block mb-2.5 text-sm font-medium text-heading">Elige al equipo</label>
+                  <select
+                    id="selector-equipo"
+                    className="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
+                    value={equipoVisitante.idEquipo}
+                    onChange={(e) => setEquipoVisitante({
+                      ...equipoVisitante,
+                      idEquipo: e.target.value,
+                      rolEquipo : "VISITANTE",
+                    })}
+                  >
+                    <option value="" disabled>
+                      ---Elige un equipo---
+                    </option>
+                    {equipos.map((equipo) => (
+                      <option key={equipo.id} value={equipo.id}>
+                        {equipo.nombre}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="goles" className="block mb-2.5 text-sm font-medium text-heading">Goles</label>
+                  <input
+                    type="number"
+                    className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                    value={equipoVisitante.goles}
+                    onChange={e => setEquipoVisitante({
+                      ...equipoVisitante,
+                      goles: e.target.value,
+                    })}/>
+                </div>
+              </div>
+          </div>
+
+          <div className="flex justify-center gap-3 mt-4">
+            <button type="submit" className="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Agregar</button>
+            <Link to="/partidos">
+            <button type="button" className="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+            Regresar
+            </button>
           </Link>
+          </div>
         </form>
-      </>
     );
 
 }

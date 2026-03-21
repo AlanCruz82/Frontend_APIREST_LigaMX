@@ -17,6 +17,7 @@ export function PartidosPage(){
     const [ equipo, setEquipo ] = useState("");
     //Estado para almacenar el torneo elegido del select
     const [ torneo, setTorneo ] = useState("");
+    
     //Llamada al servicio apiFetch para obtener los equipos y torneos que vamos a ocupar
     useEffect(()=>{
         obtenerEquipos().then(
@@ -111,12 +112,14 @@ export function PartidosPage(){
           ))
         )}
 
-        <section>
-          <label>Agregar partido</label>
+        <section className="mt-6">
+          <label className="block mb-2 font-medium">Agregar partido</label>
           <div>
-            <Link to="/agregarPartido">
-              <button>Agregar</button>
-            </Link>
+            <button className="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none">
+              <Link to="/agregarPartido" className="flex items-center gap-2">
+                Agregar
+              </Link>
+            </button>
           </div>
         </section>
       </>
