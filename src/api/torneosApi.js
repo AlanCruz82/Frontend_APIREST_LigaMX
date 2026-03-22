@@ -9,3 +9,10 @@ export function obtenerTorneos(){
 export function obtenerPuntosTorneo(id){
     return apiFetch(`${url}/puntos/${id}`);
 }
+
+export function crearTorneo(torneo){
+    return apiFetch(`${url}/registrar`, {
+        method: "POST",
+        body : JSON.stringify(torneo),
+    });
+}

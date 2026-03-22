@@ -54,8 +54,6 @@ export function AgregarPartidoPage(){
           ...partido,
           detallesPartido : [equipoLocal,equipoVisitante],
         }
-
-        console.log(partidoCompleto);
         
         //Hacemos la llamada a la api para registrar el nuevo partido
         crearPartido(partidoCompleto).then(
