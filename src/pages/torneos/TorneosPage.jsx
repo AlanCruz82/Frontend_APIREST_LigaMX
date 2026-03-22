@@ -62,9 +62,7 @@ export function TorneosPage(){
             <p>Selecciona un torneo</p>
           ) : (
             <table
-              className="w-full text-sm text-left rtl:text-right text-body"
-              s
-            >
+              className="w-full text-sm text-left rtl:text-right text-body">
               <thead>
                 <tr>
                   <th scope="col" className="px-6 py-3 font-medium">

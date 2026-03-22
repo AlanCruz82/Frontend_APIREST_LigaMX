@@ -13,9 +13,6 @@ export function JugadoresPage(){
     //Estado para almacenar el id del equipo individual seleccionado
     const [ equipo, setEquipo ] = useState("");
 
-    //Variable para redireccionar la pagina al momento de editar un jugador
-    const navigate = useNavigate();
-
     //Funcion que llamamos en el boton de la tabla para eliminar un jugador con el id enviado
     const eliminar = (id) => {
       //Llamamos al cliente apiFecth para hacer la llamada a la api y eliminar el jugador indicado
@@ -25,16 +22,19 @@ export function JugadoresPage(){
       ).catch(error => console.error(error))
     }
 
-    //Llamada a la api rest para obtener los equipos del select y jugadores de la tabla
+    //Llamada a la api rest para obtener los jugadores de la tabla en base al filtro del equipo
     useEffect(()=>{
-        obtenerEquipos().then(
-           setEquipos
-        ).catch(error => console.error(error));
-        
         obtenerJugadores(equipo).then(
             setJugadores
         ).catch(error => console.error(error));
     },[equipo]);
+
+    //Llamada a la api rest para obtener los equipos disponibles del select
+    useEffect(()=>{
+      obtenerEquipos().then(
+           setEquipos
+        ).catch(error => console.error(error));
+    },[]);
 
     return (
       <>
