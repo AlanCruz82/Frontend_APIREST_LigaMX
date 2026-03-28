@@ -82,10 +82,13 @@ export function AgregarPartidoPage(){
               <label htmlFor="jornada" className="block mb-2.5 text-sm font-medium text-heading">Jornada</label>
               <input
                 type="number"
+                min="0"
+                max="17"
                 name="jornada"
                 className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
                 value={partido.jornada}
                 onChange={establecerCambio}
+                required
               />
             </div>
 
@@ -97,6 +100,7 @@ export function AgregarPartidoPage(){
                 value={partido.idTorneo}
                 name="idTorneo"
                 onChange={establecerCambio}
+                required
               >
                 <option value="" disabled>
                   ---Elige un torneo---
@@ -119,6 +123,7 @@ export function AgregarPartidoPage(){
                 className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
                 value={partido.fechaHoraInicio}
                 onChange={establecerCambio}
+                required
               />
             </div>
 
@@ -130,6 +135,7 @@ export function AgregarPartidoPage(){
                 className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
                 value={partido.fechaHoraFin}
                 onChange={establecerCambio}
+                required
               />
             </div>
           </div>
@@ -151,6 +157,7 @@ export function AgregarPartidoPage(){
                     idEquipo: e.target.value,
                     rolEquipo: "LOCAL",
                   })}
+                  required
                 >
                   <option value="" disabled>
                     ---Elige un equipo---
@@ -167,12 +174,16 @@ export function AgregarPartidoPage(){
                 <label htmlFor="goles" className="block mb-2.5 text-sm font-medium text-heading">Goles</label>
                 <input
                   type="number"
+                  min="0"
+                  max="100"
                   className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
                   value={equipoLocal.goles}
                   onChange={e => setEquipoLocal({
                     ...equipoLocal,
                     goles: e.target.value,
-                  })}/>
+                  })}
+                  required
+                  />
               </div>
             </div>
           </div>
@@ -194,6 +205,7 @@ export function AgregarPartidoPage(){
                       idEquipo: e.target.value,
                       rolEquipo : "VISITANTE",
                     })}
+                    required
                   >
                     <option value="" disabled>
                       ---Elige un equipo---
@@ -210,12 +222,16 @@ export function AgregarPartidoPage(){
                   <label htmlFor="goles" className="block mb-2.5 text-sm font-medium text-heading">Goles</label>
                   <input
                     type="number"
+                    min="0"
+                    max="100"
                     className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
                     value={equipoVisitante.goles}
                     onChange={e => setEquipoVisitante({
                       ...equipoVisitante,
                       goles: e.target.value,
-                    })}/>
+                    })}
+                    required
+                    />
                 </div>
               </div>
           </div>

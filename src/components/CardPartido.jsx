@@ -1,4 +1,4 @@
-export function CardPartido({ partido }) {
+export function CardPartido({ partido, eliminar }) {
   return (
     <div className="max-w-md bg-white border border-gray-200 rounded-lg shadow-sm p-4 mt-5">
       {/* Encabezado */}
@@ -44,6 +44,16 @@ export function CardPartido({ partido }) {
             {partido.detallesPartido[1].rolEquipo}
           </p>
         </div>
+      </div>
+
+      {/* Botón eliminar */}
+      <div className="mt-4 flex justify-end">
+        <button
+          onClick={() => eliminar(partido.id)}
+          className="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none"
+        >
+          Eliminar
+        </button>
       </div>
     </div>
   );

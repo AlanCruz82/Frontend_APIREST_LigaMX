@@ -13,8 +13,8 @@ export function crearPartido(partido){
     });
 }
 
-export function eliminar(id){
-    apiFetch(`${url}/eliminar/${id}`, {
-        mehotd: "DELETE",
+export function eliminarPartido(id){
+    return apiFetch(`${url}/eliminar/${id}`, {
+        method: "DELETE",
     });
 }
