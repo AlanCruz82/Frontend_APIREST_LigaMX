@@ -77,6 +77,7 @@ export function FormularioJugador ({valores = {}, accion, tipo, equipos = []}){
               className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
               value={jugador.nombre}
               onChange={establecerCambio}
+              required
             />
           </div>
           <div>
@@ -93,6 +94,7 @@ export function FormularioJugador ({valores = {}, accion, tipo, equipos = []}){
               className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
               value={jugador.apellidoPaterno}
               onChange={establecerCambio}
+              required
             />
           </div>
         </div>
@@ -111,6 +113,7 @@ export function FormularioJugador ({valores = {}, accion, tipo, equipos = []}){
               className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
               value={jugador.apellidoMaterno}
               onChange={establecerCambio}
+              required
             />
           </div>
           <div>
@@ -127,6 +130,7 @@ export function FormularioJugador ({valores = {}, accion, tipo, equipos = []}){
               className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
               value={jugador.pais}
               onChange={establecerCambio}
+              required
             />
           </div>
         </div>
@@ -144,6 +148,7 @@ export function FormularioJugador ({valores = {}, accion, tipo, equipos = []}){
               name="posicion"
               className="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
               onChange={establecerCambio}
+              required
             >
               <option value="" disabled>
                 ---Posicion---
@@ -168,6 +173,7 @@ export function FormularioJugador ({valores = {}, accion, tipo, equipos = []}){
               name="idEquipo"
               className="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
               onChange={establecerCambio}
+              required
             >
               <option value="" disabled>
                 ---Elige un equipo---
@@ -192,6 +198,7 @@ export function FormularioJugador ({valores = {}, accion, tipo, equipos = []}){
             className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
             value={jugador.fechaNacimiento}
             onChange={establecerCambio}
+            required
           />
         </div>
         </div>

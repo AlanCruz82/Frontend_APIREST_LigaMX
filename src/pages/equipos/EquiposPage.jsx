@@ -15,7 +15,9 @@ export function EquiposPage(){
     const [busCiudad, setBusCiudad] = useState("");
     const [busEstadio, setBusEstadio] = useState("");
 
-    
+    //Estado para manejar el alert al eliminar un equipo
+    const [error,setError] = useState(false);
+
     useEffect(() => {
         //Obtenemos los equipos haciendo llamada asincrona a la api a traves de getEquipos
         obtenerEquipos(busCiudad,busEstadio).then(
@@ -28,13 +30,23 @@ export function EquiposPage(){
         eliminarEquipo(id).then(
             //Actualizamos los equipos para mostrarlos sin el equipo con el id enviado
             () => setEquipos(equipos.filter(e => e.id !== id))
-        ).catch(() => alert('El equipo tiene jugadores o partidos asociados, no se puede eliminar'))
+        ).catch(() => {
+          setError(true);
+          setTimeout(() => setError(false), 3000)
+        })
     }
     
     return (
       <>
         <NavBar />
         <h1 className="mt-20 text-2xl font-bold">Equipos</h1>
+
+        {error && (
+          <div className="p-4 mb-4 text-sm text-fg-warning rounded-base bg-warning-soft" role="alert">
+            <span className="font-medium">Equipo con registros</span>
+            <br />El equipo seleccionado no se puede eliminar porque tiene partidos o jugadores relacionados
+          </div>
+        )}
 
         <div className="flex items-center gap-2 mb-2">
           <label htmlFor="ciudad">Ciudad</label>

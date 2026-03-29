@@ -7,6 +7,8 @@ export function LoginPage(){
     //Generamos las variables y sus estados mutables para almacenar las credenciales ingresadas
     const [usuario, setUsuario] = useState("");
     const [contrasena, setContrasena] = useState("");
+    //Estado para manejar y mostrar el alert en el caso de tener un error en las credenciales
+    const [ error, setError ] = useState(false);
 
     //Obtenemos el estado global para logear al usuario
     const { loginUser } = useContext(AuthContext);
@@ -16,7 +18,7 @@ export function LoginPage(){
     //Definimos la funcion flecha que vamos a ejecutar cuando se envie el formulario y que va a ingresar
     //al usuario dentro de nuestra pagina
     const ingresar = async (evento) => {
-        // evento.preventDefault();
+        evento.preventDefault();
         try{
             //Hacemos la peticion http al backend para logear al usuario
             const token = await peticionLogin(usuario,contrasena);
@@ -25,21 +27,29 @@ export function LoginPage(){
             //Redirigimos al usuario a la pagina principal(equipos)
             navigate("/equipos");
         }catch{
-            //En caso de que no se pueda logear el usuario le avisamos al usuario por mensaje emergente
-            alert("Credenciales incorrectas");
-            //Limpiamos las credenciales ingresadas
-            setUsuario("");
-            setContrasena("");
+            //En caso de existir un problema al logear el usuario activamos el estado del alert
+            setError(true);
+            //Establecemos el estado del error en falso 3seg despues
+            setTimeout(() => setError(false), 3000);
         }
     };
 
     return (
-      <form className="max-w-sm mx-auto" action={ingresar}>
+      <form className="max-w-sm mx-auto" onSubmit={ingresar}>
         <h1>
           !Bienvenido!
           <br />
           Liga MX
         </h1>
+        
+        {/* Si existe un error al intentar ingresar, mostramos el alert para informar al usuario */}
+        {error && (
+          <div className="p-4 mb-4 text-sm text-fg-warning rounded-base bg-warning-soft" role="alert">
+            <span className="font-medium">Credenciales incorrectas</span>
+            <br />Usuario o contraseña incorrectos
+          </div>
+        )}
+
         <div className="mb-5">
           <label
             htmlFor="usuario"
